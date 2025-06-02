@@ -1,106 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Souad & Ayman's Memory Book 💞</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Souad & Ayman's Memory Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="book">
-    <div class="page" id="intro-page">
-      <h1>Our Memory Book 📖</h1>
-      <p class="intro">Souad, let's see how well you remember our little funny adventures 😄💖</p>
-      <button onclick="startQuiz()">Start Reading</button>
-    </div>
+  <div id="main">
+    <h1>Our Memory Book 📖</h1>
+    <p>Souad, let's see how well you remember our little funny adventures 😄💖</p>
+    <button onclick="startQuiz()">Start Reading</button>
+  </div>
 
-    <div id="quiz-container" class="page hidden">
-      <h2 id="question-text"></h2>
-      <div id="choices"></div>
-      <p id="feedback"></p>
-      <button id="next-btn" onclick="nextQuestion()">Next Page ➡️</button>
-    </div>
+  <div id="quiz-container" class="hidden">
+    <h2 id="question"></h2>
+    <div id="image-container"><!-- Placeholder for question image --></div>
+    <div id="choices"></div>
+    <p id="feedback"></p>
+    <button id="next-btn" class="hidden" onclick="nextQuestion()">Next Page ➡️</button>
+  </div>
 
-    <div id="end-page" class="page hidden">
-      <h2>✨ The End... Or Just the Beginning ✨</h2>
-      <p class="ending">Souad, you remembered so much! 💘<br>
-      Our journey is full of laughs, randomness, and love. <br><br>
-      With all my heart, <br>— Ayman 💖</p>
-    </div>
+  <div id="end-page" class="hidden">
+    <h2>You’ve Reached the Final Page, My Love ✨</h2>
+    <p>Souad, you remembered so much — and even if you didn’t, I love you for every little moment we’ve shared 💕</p>
+    <p>Every silly thing, every rainy laugh, every pizza night, every smile you tried to hide...</p>
+    <p>This book is just a tiny piece of our beautiful, weird, chaotic story.<br>And I can’t wait to write the next chapters — with you.</p>
+    <p class="sender">Forever yours,<br><strong>Ayman 💘</strong></p>
+    <button onclick="revealMessage()">💌 Open My Secret Note</button>
+    <p id="secret-note" class="hidden">Souad... you're my favorite story, my favorite laugh, my favorite everything. I’m so lucky to have you. ❤️</p>
   </div>
 
   <script>
     const quiz = [
       {
         question: "What happened when I tried to cook for you the first time?",
-        choices: ["The food caught fire 😂", "You actually loved it 😍", "We ordered pizza instead 🍕"],
-        correct: 2
-      },
-      {
-        question: "What nickname did you give me when I wore that silly hat?",
-        choices: ["Your Moroccan cowboy 🤠", "Silly Sultan 🧢", "Couscous Prince 👑"],
+        image: "img1.jpg", // placeholder
+        choices: [
+          "The food caught fire 😂",
+          "You actually loved it 😍",
+          "We ordered pizza instead 🍕"
+        ],
         correct: 0
       },
       {
-        question: "Where did we end up soaking wet from unexpected rain?",
-        choices: ["The beach 🌊", "Outside the mall ☔", "At that corner café ☕"],
-        correct: 1
-      },
-      {
-        question: "What made us both laugh uncontrollably in the taxi?",
-        choices: ["Your hiccup attack 🤭", "Driver's mixtape remix 🎧", "A cat jumped in 😹"],
+        question: "What did we laugh about on the train to the beach?",
+        image: "img2.jpg",
+        choices: [
+          "That guy with the rubber chicken",
+          "You forgot your sunglasses",
+          "I wore mismatched shoes 🙈"
+        ],
         correct: 2
       },
       {
-        question: "What surprise did I plan for you last spring?",
-        choices: ["A handwritten letter 💌", "A weird but sweet poem 📜", "A silly video message 🎥"],
+        question: "What did I call you after your karaoke performance?",
+        image: "img3.jpg",
+        choices: [
+          "My Moroccan Shakira 💃",
+          "The mic master",
+          "Souad Superstar ⭐"
+        ],
+        correct: 0
+      },
+      {
+        question: "What snack did we keep fighting over?",
+        image: "img4.jpg",
+        choices: [
+          "Choco Prince 🍫",
+          "Chipsy with cheese 🧀",
+          "Haribo bears 🐻"
+        ],
         correct: 1
+      },
+      {
+        question: "What surprise did I plan for you last spring?",
+        image: "img5.jpg",
+        choices: [
+          "A sunset walk by the sea 🌅",
+          "A photo album with our memories 📷",
+          "A surprise picnic in the forest 🌳"
+        ],
+        correct: 2
       }
     ];
 
     let current = 0;
-    let answered = false;
 
     function startQuiz() {
-      document.getElementById("intro-page").classList.add("hidden");
+      document.getElementById("main").classList.add("hidden");
       document.getElementById("quiz-container").classList.remove("hidden");
       showQuestion();
     }
 
     function showQuestion() {
       const q = quiz[current];
-      document.getElementById("question-text").textContent = q.question;
+      document.getElementById("question").textContent = q.question;
       document.getElementById("choices").innerHTML = "";
       document.getElementById("feedback").textContent = "";
-      answered = false;
-
-      q.choices.forEach((choice, index) => {
+      document.getElementById("next-btn").classList.add("hidden");
+      document.getElementById("image-container").innerHTML = `<img src="${q.image}" alt="Question Image">`;
+      q.choices.forEach((choice, i) => {
         const btn = document.createElement("button");
         btn.textContent = choice;
-        btn.className = "choice-btn";
-        btn.onclick = () => handleAnswer(index);
+        btn.onclick = () => checkAnswer(i);
         document.getElementById("choices").appendChild(btn);
       });
-
-      document.getElementById("next-btn").style.display = "none";
     }
 
-    function handleAnswer(index) {
-      if (answered) return;
-      answered = true;
-
-      const q = quiz[current];
-      const feedback = document.getElementById("feedback");
-      if (index === q.correct) {
-        feedback.textContent = "Correct! 💖 You really do remember!";
-        feedback.style.color = "green";
-      } else {
-        feedback.textContent = "Haha nooo 😅 Close, but not quite!";
-        feedback.style.color = "crimson";
-      }
-
-      document.getElementById("next-btn").style.display = "inline-block";
+    function checkAnswer(i) {
+      const isCorrect = i === quiz[current].correct;
+      document.getElementById("feedback").textContent = isCorrect ? "Yes! You remembered 😍" : "Haha nooo 😅 Close, but not quite!";
+      document.getElementById("next-btn").classList.remove("hidden");
     }
 
     function nextQuestion() {
@@ -115,6 +128,10 @@
     function showEndPage() {
       document.getElementById("quiz-container").classList.add("hidden");
       document.getElementById("end-page").classList.remove("hidden");
+    }
+
+    function revealMessage() {
+      document.getElementById("secret-note").classList.remove("hidden");
     }
   </script>
 </body>
