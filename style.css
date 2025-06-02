@@ -1,29 +1,10 @@
 body {
-  background: #fefaf6;
   font-family: 'Raleway', sans-serif;
+  background: linear-gradient(120deg, #fceff9, #ffe5ec);
+  color: #4a2f2f;
   margin: 0;
-  padding: 0;
+  padding: 20px;
   text-align: center;
-  color: #333;
-}
-
-.book {
-  max-width: 700px;
-  margin: 50px auto;
-  padding: 30px;
-  background: #fff8f0;
-  border: 2px solid #f3d1d1;
-  border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.05);
-  position: relative;
-}
-
-.page {
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-.hidden {
-  display: none;
 }
 
 h1, h2 {
@@ -31,56 +12,64 @@ h1, h2 {
   color: #b35d5d;
 }
 
-.intro {
-  font-size: 1.1em;
-  margin: 20px 0;
-}
-
-.ending {
-  font-size: 1.2em;
-  color: #4d4d4d;
+#main, #quiz-container, #end-page {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 button {
-  padding: 10px 25px;
-  margin-top: 20px;
-  font-size: 1em;
+  background: #b35d5d;
+  color: white;
   border: none;
-  background-color: #ffb6c1;
-  color: #fff;
-  border-radius: 10px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin: 10px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: #ff99aa;
+  background: #923f3f;
 }
 
-.choice-btn {
+.hidden {
+  display: none;
+}
+
+#choices button {
   display: block;
-  background-color: #ffe2ec;
-  color: #333;
-  border: 1px solid #ffccd5;
-  margin: 10px auto;
-  width: 80%;
-  max-width: 400px;
-  border-radius: 12px;
-  padding: 10px;
-  font-size: 1em;
-}
-
-.choice-btn:hover {
-  background-color: #ffd6e0;
+  width: 100%;
+  margin: 8px 0;
 }
 
 #feedback {
-  font-weight: bold;
   margin-top: 15px;
-  font-size: 1.1em;
+  font-weight: bold;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+#image-container img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.sender {
+  margin-top: 20px;
+  font-style: italic;
+  color: #a05050;
+  font-size: 1.2em;
+}
+
+#secret-note {
+  margin-top: 20px;
+  font-style: italic;
+  color: #b35d5d;
+  font-size: 1.1em;
 }
