@@ -3,15 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Awesome Page</title>
+    <title>A Little Adventure For You!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to My Page!</h1>
-        <p>Here's my chosen image:</p>
-        <img src="my-image.jpg" alt="A description of my image">
-        <p>You can add more text here if you like, or change the existing text!</p>
+    <div class="adventure-container">
+
+        <div id="scene1" class="scene active">
+            <h1>Hi [Her Name Here]!</h1>
+            <p>I made a little interactive adventure just for you. Ready to start?</p>
+            <button onclick="showScene('scene2')">Yes, let's go!</button>
+        </div>
+
+        <div id="scene2" class="scene">
+            <h2>First, a little question for you...</h2>
+            <p>What's one of my favorite simple things to do with you?</p>
+            <button onclick="showScene('pathA_response')">A. Watching a movie together</button>
+            <button onclick="showScene('pathB_response')">B. Just talking and laughing</button>
+            <button onclick="showScene('pathC_response')">C. Going for a quiet walk</button>
+        </div>
+
+        <div id="pathA_response" class="scene">
+            <h2>Watching movies is great...</h2>
+            <p>...and cuddling up with you during one is definitely amazing! You're on the right track!</p>
+            <p>Actually, all those options are wonderful with you because *you* make them special.</p>
+            <button onclick="showScene('scene3')">Aw, tell me more!</button>
+        </div>
+
+        <div id="pathB_response" class="scene">
+            <h2>Talking and laughing with you is the BEST!</h2>
+            <p>Honestly, I could do that for hours. Your laugh is my favorite sound!</p>
+            <p>Actually, all those options are wonderful with you because *you* make them special.</p>
+            <button onclick="showScene('scene3')">That's sweet! What's next?</button>
+        </div>
+
+        <div id="pathC_response" class="scene">
+            <h2>Walks with you are so peaceful and nice.</h2>
+            <p>I love those moments, just strolling and being together.</p>
+            <p>Actually, all those options are wonderful with you because *you* make them special.</p>
+            <button onclick="showScene('scene3')">Okay, lead the way!</button>
+        </div>
+        
+        <div id="scene3" class="scene">
+            <h2>No matter what we do...</h2>
+            <p>...every moment spent with you is a moment I treasure. You have a way of making everything brighter.</p>
+            <p>Are you ready for your main surprise message?</p>
+            <button onclick="showScene('finalMessage')">Yes, show me!</button>
+        </div>
+
+        <div id="finalMessage" class="scene">
+            <h2>For You, [Her Name Here]!</h2>
+            <img src="your-chosen-image.jpg" alt="A special image for you" class="final-image">
+            <p>This is just a small way to say you mean the world to me. Your [mention a quality, e.g., smile, kindness, laugh] brightens up all my days.</p>
+            <p>Thank you for being the amazing person you are. I love you!</p>
+            <p>Love, [Your Name Here]</p>
+        </div>
+
     </div>
+
+    <script>
+        function showScene(sceneId) {
+            // Hide all scenes
+            const scenes = document.querySelectorAll('.scene');
+            scenes.forEach(scene => {
+                scene.classList.remove('active');
+            });
+
+            // Show the target scene
+            const nextScene = document.getElementById(sceneId);
+            if (nextScene) {
+                nextScene.classList.add('active');
+            }
+        }
+    </script>
+
 </body>
 </html>
