@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', sans-serif; /* You can change this to a more romantic font */
+    font-family: 'Arial', sans-serif; /* You can change this to a more romantic font like 'Georgia' or a Google Font */
     margin: 0;
     padding: 20px;
     background-color: #fdeff2; /* A soft, romantic background */
@@ -8,7 +8,7 @@ body {
     align-items: center;
     min-height: 100vh;
     text-align: center;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Better layout control */
 }
 
 .adventure-container {
@@ -17,7 +17,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     max-width: 700px;
-    width: 100%;
+    width: 90%; /* Responsive width */
 }
 
 .scene {
@@ -31,18 +31,20 @@ body {
 
 h1 {
     color: #e91e63; /* Pinkish-red */
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* Increased margin */
+    font-size: 2em; /* Slightly larger */
 }
 
 h2 {
     color: #c2185b; /* Deeper pink */
-    margin-bottom: 10px;
+    margin-bottom: 15px; /* Increased margin */
+    font-size: 1.6em; /* Slightly larger */
 }
 
 p {
-    color: #555;
+    color: #444; /* Slightly darker text for better readability */
     line-height: 1.7;
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Increased margin */
     font-size: 1.1em;
 }
 
@@ -53,10 +55,12 @@ button {
     padding: 12px 25px;
     border-radius: 25px; /* More rounded buttons */
     font-size: 1em;
+    font-weight: bold; /* Bolder text */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 5px; /* Add some margin around buttons */
+    margin: 8px 5px; /* Add some margin around buttons for spacing */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: inline-block; /* Ensure buttons can have margin */
 }
 
 button:hover {
@@ -70,10 +74,12 @@ button:active {
 
 .final-image {
     max-width: 80%;
+    max-height: 300px; /* Added max-height */
+    object-fit: contain; /* Ensure whole image is visible, scaled down if needed */
     height: auto;
     border-radius: 10px;
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* Increased margin */
     border: 3px solid #ffc1e3; /* Light pink border for image */
 }
 
