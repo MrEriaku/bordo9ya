@@ -1,90 +1,62 @@
 body {
-    font-family: 'Arial', sans-serif; /* You can change this to a more romantic font like 'Georgia' or a Google Font */
-    margin: 0;
-    padding: 20px;
-    background-color: #fdeff2; /* A soft, romantic background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    box-sizing: border-box; /* Better layout control */
+  background: linear-gradient(to bottom right, #ffe6e6, #fff0f5);
+  font-family: 'Verdana', sans-serif;
+  padding: 40px;
+  text-align: center;
+  color: #333;
 }
 
-.adventure-container {
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    max-width: 700px;
-    width: 90%; /* Responsive width */
-}
-
-.scene {
-    display: none; /* Hide all scenes by default */
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.scene.active {
-    display: block; /* Show only the active scene */
+.container {
+  background-color: #ffffff;
+  max-width: 700px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
 h1 {
-    color: #e91e63; /* Pinkish-red */
-    margin-bottom: 20px; /* Increased margin */
-    font-size: 2em; /* Slightly larger */
+  color: #e60073;
+  margin-bottom: 20px;
 }
 
-h2 {
-    color: #c2185b; /* Deeper pink */
-    margin-bottom: 15px; /* Increased margin */
-    font-size: 1.6em; /* Slightly larger */
+.choice-btn {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  border: none;
+  background-color: #ffb6c1;
+  color: #333;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1em;
+  width: 80%;
+  max-width: 400px;
 }
 
-p {
-    color: #444; /* Slightly darker text for better readability */
-    line-height: 1.7;
-    margin-bottom: 25px; /* Increased margin */
-    font-size: 1.1em;
+.choice-btn:hover {
+  background-color: #ff99bb;
 }
 
-button {
-    background-color: #ff80ab; /* Light pink button */
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 25px; /* More rounded buttons */
-    font-size: 1em;
-    font-weight: bold; /* Bolder text */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin: 8px 5px; /* Add some margin around buttons for spacing */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    display: inline-block; /* Ensure buttons can have margin */
+#next-btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  font-size: 1em;
+  border: none;
+  background-color: #cc0066;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  display: none;
 }
 
-button:hover {
-    background-color: #f06292; /* Darker pink on hover */
-    transform: translateY(-2px); /* Slight lift on hover */
+#feedback {
+  font-weight: bold;
+  margin-top: 15px;
 }
 
-button:active {
-    transform: translateY(0); /* Click effect */
-}
-
-.final-image {
-    max-width: 80%;
-    max-height: 300px; /* Added max-height */
-    object-fit: contain; /* Ensure whole image is visible, scaled down if needed */
-    height: auto;
-    border-radius: 10px;
-    margin-top: 15px;
-    margin-bottom: 20px; /* Increased margin */
-    border: 3px solid #ffc1e3; /* Light pink border for image */
-}
-
-/* A simple fade-in animation for scenes */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.sender {
+  margin-top: 40px;
+  font-style: italic;
+  color: #666;
 }
