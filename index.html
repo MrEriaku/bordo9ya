@@ -1,83 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Little Adventure For Souad!</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Souad's Quiz Adventure 💘</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="adventure-container">
-
-        <div id="scene1" class="scene active">
-            <h1>Hi Farika!</h1>
-            <p>I made a little interactive adventure just for you. Ready to start?</p>
-            <button onclick="showScene('scene2')">Yes, let's go!</button>
-        </div>
-
-        <div id="scene2" class="scene">
-            <h2>First, a little question for you...</h2>
-            <p>What's something that always makes me smile when I think of you?</p>
-            <button onclick="showScene('pathA_response')">A. Your amazing laugh</button>
-            <button onclick="showScene('pathB_response')">B. Your kind heart</button>
-            <button onclick="showScene('pathC_response')">C. Your beautiful smile</button>
-        </div>
-
-        <div id="pathA_response" class="scene">
-            <h2>Your laugh is definitely music to my ears!</h2>
-            <p>It's one of the many wonderful things about you.</p>
-            <p>Honestly, all these choices are true because you're just that special!</p>
-            <button onclick="showScene('scene3')">Aw, tell me more!</button>
-        </div>
-
-        <div id="pathB_response" class="scene">
-            <h2>Your kind heart shines so brightly!</h2>
-            <p>It's something I admire about you every single day.</p>
-            <p>Honestly, all these choices are true because you're just that special!</p>
-            <button onclick="showScene('scene3')">That's sweet! What's next?</button>
-        </div>
-
-        <div id="pathC_response" class="scene">
-            <h2>Your smile can light up any room!</h2>
-            <p>It's incredibly contagious and always makes my day better.</p>
-            <p>Honestly, all these choices are true because you're just that special!</p>
-            <button onclick="showScene('scene3')">Okay, lead the way!</button>
-        </div>
-        
-        <div id="scene3" class="scene">
-            <h2>The truth is...</h2>
-            <p>...everything about you is wonderful, Souad. Every moment with you is something I cherish.</p>
-            <p>Are you ready for your main surprise message?</p>
-            <button onclick="showScene('finalMessage')">Yes, show me!</button>
-        </div>
-
-        <div id="finalMessage" class="scene">
-            <h2>For You, Souad!</h2>
-            <img src="placeholder-heart.jpg" alt="A special image for Souad" class="final-image">
-            
-            <p>This is just a small way to say you mean the world to me. Your presence in my life is a gift I treasure every day.</p>
-            <p>Thank you for being the amazing, wonderful person you are, Souad. You're incredible!</p>
-            
-            <p>Love, <br>Your Secret Admirer</p>
-        </div>
-
+  <div class="container">
+    <h1>Souad, do you remember? 💭</h1>
+    <div id="quiz-box">
+      <p id="question-text">Click Start to begin our funny memory quiz 😄</p>
+      <div id="choices"></div>
+      <button id="next-btn" onclick="nextQuestion()">Start</button>
+      <p id="feedback"></p>
     </div>
+    <p class="sender">Made with love, Ayman 💖</p>
+  </div>
 
-    <script>
-        function showScene(sceneId) {
-            // Hide all scenes
-            const scenes = document.querySelectorAll('.scene');
-            scenes.forEach(scene => {
-                scene.classList.remove('active');
-            });
+  <script>
+    const quiz = [
+      {
+        question: "What happened that time I tried to cook for you the first time?",
+        choices: ["The food caught fire 😂", "You actually loved it 😍", "We ordered pizza instead 🍕"],
+        correct: 2
+      },
+      {
+        question: "What did you call me when I wore that ridiculous shirt?",
+        choices: ["Fashion king 👑", "Moroccan pineapple 🍍", "Your funky prince 💃"],
+        correct: 1
+      },
+      {
+        question: "Where did we get stuck in the rain and laughed like crazy?",
+        choices: ["Outside the mall 🌧️", "At the beach 🏖️", "At that little café ☕"],
+        correct: 0
+      },
+      {
+        question: "What song did we randomly dance to in the kitchen?",
+        choices: ["Shakira - Hips Don't Lie 💃", "Celine Dion - My Heart Will Go On 🎵", "Darija remix of Barbie Girl 😂"],
+        correct: 2
+      },
+      {
+        question: "What did I give you on our mini-anniversary?",
+        choices: ["A handmade card 💌", "A plastic flower from a vending machine 🌹", "A kiss and a chocolate 🍫"],
+        correct: 0
+      }
+    ];
 
-            // Show the target scene
-            const nextScene = document.getElementById(sceneId);
-            if (nextScene) {
-                nextScene.classList.add('active');
-            }
-        }
-    </script>
+    let current = 0;
+    let answered = false;
 
+    function showQuestion() {
+      const q = quiz[current];
+      document.getElementById("question-text").textContent = q.question;
+      document.getElementById("choices").innerHTML = "";
+      document.getElementById("feedback").textContent = "";
+      answered = false;
+
+      q.choices.forEach((choice, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = choice;
+        btn.className = "choice-btn";
+        btn.onclick = () => handleAnswer(index);
+        document.getElementById("choices").appendChild(btn);
+      });
+
+      document.getElementById("next-btn").style.display = "none";
+    }
+
+    function handleAnswer(index) {
+      if (answered) return;
+      answered = true;
+
+      const q = quiz[current];
+      const feedback = document.getElementById("feedback");
+      if (index === q.correct) {
+        feedback.textContent = "Correct! You remember 😍";
+        feedback.style.color = "green";
+      } else {
+        feedback.textContent = "Oops 😅 Not the one I was thinking of!";
+        feedback.style.color = "red";
+      }
+
+      document.getElementById("next-btn").style.display = "inline-block";
+      document.getElementById("next-btn").textContent = current < quiz.length - 1 ? "Next" : "See Result";
+    }
+
+    function nextQuestion() {
+      if (current < quiz.length - 1) {
+        current++;
+        showQuestion();
+      } else {
+        showFinalMessage();
+      }
+    }
+
+    function showFinalMessage() {
+      document.getElementById("question-text").textContent = "Souad, you did amazing! 🥰 This little journey shows how unforgettable our moments are.";
+      document.getElementById("choices").innerHTML = "";
+      document.getElementById("next-btn").style.display = "none";
+      document.getElementById("feedback").textContent = "💖 I love you. - Ayman";
+      document.getElementById("feedback").style.color = "#cc0066";
+    }
+
+    // Start quiz when page loads
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("next-btn").onclick = () => {
+        showQuestion();
+      };
+    });
+  </script>
 </body>
 </html>
