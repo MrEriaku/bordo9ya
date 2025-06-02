@@ -1,54 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <meta charset="UTF-8">
-  <title>Souad's Quiz Adventure 💘</title>
+  <title>Souad & Ayman's Memory Book 💞</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h1>Souad, do you remember? 💭</h1>
-    <div id="quiz-box">
-      <p id="question-text">Click Start to begin our funny memory quiz 😄</p>
-      <div id="choices"></div>
-      <button id="next-btn" onclick="nextQuestion()">Start</button>
-      <p id="feedback"></p>
+  <div class="book">
+    <div class="page" id="intro-page">
+      <h1>Our Memory Book 📖</h1>
+      <p class="intro">Souad, let's see how well you remember our little funny adventures 😄💖</p>
+      <button onclick="startQuiz()">Start Reading</button>
     </div>
-    <p class="sender">Made with love, Ayman 💖</p>
+
+    <div id="quiz-container" class="page hidden">
+      <h2 id="question-text"></h2>
+      <div id="choices"></div>
+      <p id="feedback"></p>
+      <button id="next-btn" onclick="nextQuestion()">Next Page ➡️</button>
+    </div>
+
+    <div id="end-page" class="page hidden">
+      <h2>✨ The End... Or Just the Beginning ✨</h2>
+      <p class="ending">Souad, you remembered so much! 💘<br>
+      Our journey is full of laughs, randomness, and love. <br><br>
+      With all my heart, <br>— Ayman 💖</p>
+    </div>
   </div>
 
   <script>
     const quiz = [
       {
-        question: "What happened that time I tried to cook for you the first time?",
+        question: "What happened when I tried to cook for you the first time?",
         choices: ["The food caught fire 😂", "You actually loved it 😍", "We ordered pizza instead 🍕"],
         correct: 2
       },
       {
-        question: "What did you call me when I wore that ridiculous shirt?",
-        choices: ["Fashion king 👑", "Moroccan pineapple 🍍", "Your funky prince 💃"],
+        question: "What nickname did you give me when I wore that silly hat?",
+        choices: ["Your Moroccan cowboy 🤠", "Silly Sultan 🧢", "Couscous Prince 👑"],
+        correct: 0
+      },
+      {
+        question: "Where did we end up soaking wet from unexpected rain?",
+        choices: ["The beach 🌊", "Outside the mall ☔", "At that corner café ☕"],
         correct: 1
       },
       {
-        question: "Where did we get stuck in the rain and laughed like crazy?",
-        choices: ["Outside the mall 🌧️", "At the beach 🏖️", "At that little café ☕"],
-        correct: 0
-      },
-      {
-        question: "What song did we randomly dance to in the kitchen?",
-        choices: ["Shakira - Hips Don't Lie 💃", "Celine Dion - My Heart Will Go On 🎵", "Darija remix of Barbie Girl 😂"],
+        question: "What made us both laugh uncontrollably in the taxi?",
+        choices: ["Your hiccup attack 🤭", "Driver's mixtape remix 🎧", "A cat jumped in 😹"],
         correct: 2
       },
       {
-        question: "What did I give you on our mini-anniversary?",
-        choices: ["A handmade card 💌", "A plastic flower from a vending machine 🌹", "A kiss and a chocolate 🍫"],
-        correct: 0
+        question: "What surprise did I plan for you last spring?",
+        choices: ["A handwritten letter 💌", "A weird but sweet poem 📜", "A silly video message 🎥"],
+        correct: 1
       }
     ];
 
     let current = 0;
     let answered = false;
+
+    function startQuiz() {
+      document.getElementById("intro-page").classList.add("hidden");
+      document.getElementById("quiz-container").classList.remove("hidden");
+      showQuestion();
+    }
 
     function showQuestion() {
       const q = quiz[current];
@@ -75,15 +93,14 @@
       const q = quiz[current];
       const feedback = document.getElementById("feedback");
       if (index === q.correct) {
-        feedback.textContent = "Correct! You remember 😍";
+        feedback.textContent = "Correct! 💖 You really do remember!";
         feedback.style.color = "green";
       } else {
-        feedback.textContent = "Oops 😅 Not the one I was thinking of!";
-        feedback.style.color = "red";
+        feedback.textContent = "Haha nooo 😅 Close, but not quite!";
+        feedback.style.color = "crimson";
       }
 
       document.getElementById("next-btn").style.display = "inline-block";
-      document.getElementById("next-btn").textContent = current < quiz.length - 1 ? "Next" : "See Result";
     }
 
     function nextQuestion() {
@@ -91,24 +108,14 @@
         current++;
         showQuestion();
       } else {
-        showFinalMessage();
+        showEndPage();
       }
     }
 
-    function showFinalMessage() {
-      document.getElementById("question-text").textContent = "Souad, you did amazing! 🥰 This little journey shows how unforgettable our moments are.";
-      document.getElementById("choices").innerHTML = "";
-      document.getElementById("next-btn").style.display = "none";
-      document.getElementById("feedback").textContent = "💖 I love you. - Ayman";
-      document.getElementById("feedback").style.color = "#cc0066";
+    function showEndPage() {
+      document.getElementById("quiz-container").classList.add("hidden");
+      document.getElementById("end-page").classList.remove("hidden");
     }
-
-    // Start quiz when page loads
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("next-btn").onclick = () => {
-        showQuestion();
-      };
-    });
   </script>
 </body>
 </html>
