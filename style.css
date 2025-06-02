@@ -1,62 +1,86 @@
 body {
-  background: linear-gradient(to bottom right, #ffe6e6, #fff0f5);
-  font-family: 'Verdana', sans-serif;
-  padding: 40px;
+  background: #fefaf6;
+  font-family: 'Raleway', sans-serif;
+  margin: 0;
+  padding: 0;
   text-align: center;
   color: #333;
 }
 
-.container {
-  background-color: #ffffff;
+.book {
   max-width: 700px;
-  margin: auto;
+  margin: 50px auto;
   padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  background: #fff8f0;
+  border: 2px solid #f3d1d1;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  position: relative;
 }
 
-h1 {
-  color: #e60073;
-  margin-bottom: 20px;
+.page {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.hidden {
+  display: none;
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  color: #b35d5d;
+}
+
+.intro {
+  font-size: 1.1em;
+  margin: 20px 0;
+}
+
+.ending {
+  font-size: 1.2em;
+  color: #4d4d4d;
+}
+
+button {
+  padding: 10px 25px;
+  margin-top: 20px;
+  font-size: 1em;
+  border: none;
+  background-color: #ffb6c1;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff99aa;
 }
 
 .choice-btn {
   display: block;
-  margin: 10px auto;
-  padding: 10px 20px;
-  border: none;
-  background-color: #ffb6c1;
+  background-color: #ffe2ec;
   color: #333;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1em;
+  border: 1px solid #ffccd5;
+  margin: 10px auto;
   width: 80%;
   max-width: 400px;
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 1em;
 }
 
 .choice-btn:hover {
-  background-color: #ff99bb;
-}
-
-#next-btn {
-  margin-top: 20px;
-  padding: 12px 25px;
-  font-size: 1em;
-  border: none;
-  background-color: #cc0066;
-  color: white;
-  border-radius: 12px;
-  cursor: pointer;
-  display: none;
+  background-color: #ffd6e0;
 }
 
 #feedback {
   font-weight: bold;
   margin-top: 15px;
+  font-size: 1.1em;
 }
 
-.sender {
-  margin-top: 40px;
-  font-style: italic;
-  color: #666;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
